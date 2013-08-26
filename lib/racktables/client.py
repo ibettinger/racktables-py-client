@@ -162,7 +162,7 @@ class RacktablesClient:
 
         # add attributes passed by ID
         for attr_id, attr_value in attrs.items():
-            args['attr_' + attr_id] = attr_value
+            args['attr_' + str(attr_id)] = attr_value
 
         updated_object = self.make_request('edit_object', args)
 
@@ -363,7 +363,7 @@ class RacktablesClient:
         self.logger.debug('linking object id %s (%s, child) to object id %s (%s, parent)',
                           child_id, child_type, parent_id, parent_type)
 
-        return self.make_request('', {'child_entity_type':  child_type,
+        return self.make_request('link_entities', {'child_entity_type':  child_type,
                                       'child_entity_id':    child_id,
                                       'parent_entity_type': parent_type,
                                       'parent_entity_id':   parent_id})
